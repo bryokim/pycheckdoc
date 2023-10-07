@@ -7,7 +7,7 @@ import sys
 from concurrent.futures import TimeoutError
 from pathlib import Path
 from pebble import concurrent, common
-from typing import List, TextIO
+from typing import List, TextIO, Optional, List
 from types import ModuleType
 
 
@@ -19,7 +19,7 @@ sys.path.append(str(Path.cwd().parent.parent))
 
 
 @concurrent.process(timeout=1)
-def validate_import(basename: str) -> bool | None:
+def validate_import(basename: str) -> Optional[bool]:
     """Validate that the import can be done within
     a second. If not, then the file is being executed
     during importation and takes too long.
@@ -45,7 +45,7 @@ def validate_import(basename: str) -> bool | None:
     return True
 
 
-def get_modules(stderr: TextIO) -> list[ModuleType]:
+def get_modules(stderr: TextIO) -> List[ModuleType]:
     """Import valid modules.
 
     Args:

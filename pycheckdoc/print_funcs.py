@@ -1,9 +1,10 @@
 """Functions for printing results of the checks"""
 
 import sys
+from typing import Optional
 
 
-def print_module_success(module_name: str, msg: str | None = None) -> None:
+def print_module_success(module_name: str, msg: Optional[str] = None) -> None:
     """Print success from the module checks.
 
     Args:
@@ -25,7 +26,7 @@ def print_module_success(module_name: str, msg: str | None = None) -> None:
 
 
 def print_module_err(
-    module_name: str, err: str | None = None, line: int = 0
+    module_name: str, err: Optional[str] = None, line: int = 0
 ) -> None:
     """Print error from the module checks.
 
@@ -63,7 +64,7 @@ def print_module_err(
 
 
 def print_function_success(
-    module_name: str, func_name: str, msg: str | None = None
+    module_name: str, func_name: str, msg: Optional[str] = None
 ) -> None:
     """Print success from the function checks.
 
@@ -87,7 +88,7 @@ def print_function_success(
 
 
 def print_function_err(
-    module_name: str, func_name: str, err: str | None = None, line: int = 0
+    module_name: str, func_name: str, err: Optional[str] = None, line: int = 0
 ) -> None:
     """Print error from the function checks.
 
@@ -127,7 +128,7 @@ def print_function_err(
 
 
 def print_class_err(
-    module_name: str, class_name: str, err: str | None = None, line: int = 0
+    module_name: str, class_name: str, err: Optional[str] = None, line: int = 0
 ) -> None:
     """Print error from the class checks.
 
@@ -169,7 +170,7 @@ def print_method_err(
     module_name: str,
     class_name: str,
     method_name: str,
-    err: str | None = None,
+    err: Optional[str] = None,
     line: int = 0,
 ) -> None:
     """Print error from the method checks.

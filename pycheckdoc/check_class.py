@@ -3,12 +3,12 @@
 
 import inspect
 from types import ModuleType, FunctionType
-from typing import Any, Type
+from typing import Any, Type, List, Tuple
 
 from pycheckdoc.print_funcs import print_class_err, print_method_err
 
 
-def get_classes(module: ModuleType) -> list[Any]:
+def get_classes(module: ModuleType) -> List[Any]:
     """Get classes from the given module.
 
     Args:
@@ -26,7 +26,7 @@ def get_classes(module: ModuleType) -> list[Any]:
     return classes
 
 
-def get_methods(_class: Type) -> list[FunctionType]:
+def get_methods(_class: Type) -> List[FunctionType]:
     """Geth methods in the given class.
 
     Args:
@@ -71,7 +71,7 @@ def check_method_doc(_class: Type) -> int:
     return success
 
 
-def check_class_doc(module: ModuleType) -> tuple:
+def check_class_doc(module: ModuleType) -> Tuple[int, int]:
     """Check if classes in the given module have documentation.
     Args:
         module (ModuleType): Module to check its classes.
