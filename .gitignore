@@ -1,5 +1,6 @@
-# New file
+# Stream file
 import_output.now
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
