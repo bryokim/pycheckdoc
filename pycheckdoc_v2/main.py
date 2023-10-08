@@ -19,7 +19,11 @@ def main():
         print_usage()
         sys.exit(1)
 
-    modules = get_ast()
+    modules = get_ast(sys.argv[1:])
+
+    if not modules:  # Files provided don't exist
+        print("Files provided don't exist")
+        return
 
     total_errors = 0
     files_with_errors = 0
