@@ -12,12 +12,12 @@ def check_function_doc(module_tuple: Tuple[str, ast.Module]) -> int:
     """Check if the functions in the given module have documentation.
 
     Args:
-        module_tuple (Tuple[str, ast.Module]): Tuple of module name and
+        module_tuple (Tuple[str, ast.Module]): Tuple of module path and
             the modules abstract syntax tree.
     Returns:
         int: Number of functions without documentation.
     """
-    module_name, module_node = module_tuple
+    module_path, module_node = module_tuple
 
     function_nodes = [
         node for node in module_node.body if type(node) is ast.FunctionDef
@@ -28,7 +28,7 @@ def check_function_doc(module_tuple: Tuple[str, ast.Module]) -> int:
     for func_node in function_nodes:
         if not ast.get_docstring(func_node):
             print_function_err(
-                module_name, func_node.name, line=func_node.lineno
+                module_path, func_node.name, line=func_node.lineno
             )
             no_doc_num += 1
 
