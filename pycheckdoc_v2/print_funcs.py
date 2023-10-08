@@ -19,7 +19,7 @@ def print_module_success(module_name: str, msg: Optional[str] = None) -> None:
 
     print("\t", end="")
     print("\033[1;32;40m module_suc \033[0m ->", end=" ")
-    print(f"\033[5;32m{module_name}.py \033[0m", end=ending)
+    print(f"\033[5;32m{module_name} \033[0m", end=ending)
 
     if msg:
         print(f"\033[0;32m : {msg}\033[0m")
@@ -39,7 +39,7 @@ def print_module_err(module_name: str, err: Optional[str] = None) -> None:
         ending = "\n"
 
     print(
-        f"\033[1;33m{module_name}.py: 0:",
+        f"\033[1;33m{module_name}: 0:",
         end="",
         file=sys.stderr,
     )
@@ -75,7 +75,7 @@ def print_function_success(
 
     print("\t", end="")
     print("\033[1;32;40m func_suc \033[0m ->", end=" ")
-    print(f"\033[5;32m{module_name}.py : {func_name} \033[0m", end=ending)
+    print(f"\033[5;32m{module_name} : {func_name} \033[0m", end=ending)
 
     if msg:
         print(f"\033[0;32m : {msg}\033[0m")
@@ -100,7 +100,7 @@ def print_function_err(
         ending = "\n"
 
     print(
-        f"\033[1;33m{module_name}.py:",
+        f"\033[1;33m{module_name}:",
         end="",
         file=sys.stderr,
     )
@@ -139,7 +139,7 @@ def print_class_err(
         ending = "\n"
 
     print(
-        f"\033[1;33m{module_name}.py:",
+        f"\033[1;33m{module_name}:",
         end="",
         file=sys.stderr,
     )
@@ -183,7 +183,7 @@ def print_method_err(
         ending = "\n"
 
     print(
-        f"\033[1;33m{module_name}.py:",
+        f"\033[1;33m{module_name}:",
         end="",
         file=sys.stderr,
     )
