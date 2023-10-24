@@ -2,6 +2,7 @@
 """Main"""
 
 import sys
+import argparse
 
 # Local
 from pycheckdoc_v2.generate_ast import get_ast
@@ -12,16 +13,34 @@ from pycheckdoc_v2.print_funcs import print_error, print_success
 from pycheckdoc_v2.usage import print_usage
 
 
+parser = argparse.ArgumentParser(
+    description="Check documentation of python source files"
+)
+
+parser.add_argument(
+    "-r",
+    "--recursive",
+    dest="recursive",
+    action="store_true",
+    help="Recurse over directories.",
+)
+
+parser.add_argument(
+    "paths", nargs="*", help="Paths to files/directories to check"
+)
+args = parser.parse_args()
+
+
 def main():
     """Entry point"""
 
-    if len(sys.argv) < 2:
+    if len(args.paths) == 0:
         print_usage()
         sys.exit(1)
 
-    modules = get_ast(sys.argv[1:])
+    modules = get_ast(args.paths, recursive=args.recursive)
 
-    if not modules:  # Files provided don't exist
+    if modules is None:  # Files provided don't exist
         print("Files provided don't exist")
         return
 
