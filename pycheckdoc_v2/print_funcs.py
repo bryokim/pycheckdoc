@@ -239,7 +239,7 @@ def print_error(error_count: int, error_files: int, num_modules: int) -> None:
             + error_str[error_str.rfind("file") + 4:]
         )
 
-    print(f"\033[1;31m{error_str}", file=sys.stderr)
+    print(f"\033[1;31m{error_str}\033[0m", file=sys.stderr)
 
 
 def print_success(num_modules: int) -> None:
