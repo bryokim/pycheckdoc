@@ -2,6 +2,8 @@
 
 
 USAGE = """
+Check documentation of python source files
+
 Path to the file/directory to check can either be relative
 or absolute.
 
@@ -28,11 +30,14 @@ Examples:
     Check a file or directory not in the cwd:
         pycheckdoc /home/user/dev/file.py   -> File
         pycheckdoc /home/user/dev   -> Directory
+
+    Check directories recursively:
+        pycheckdoc -r dir
 """
 
 
 def print_usage():
     """Print usage"""
-    print("USAGE: pycheckdoc [path]")
+    print("USAGE: pycheckdoc [-h] [-r] [paths ...]")
 
     print(USAGE)
