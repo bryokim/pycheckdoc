@@ -30,7 +30,7 @@ def get_module_node(path: str) -> Optional[Tuple[str, ast.Module]]:
     return None
 
 
-def validate_paths(paths: List[str]) -> Set[str]:
+def validate_paths(paths: List[str], recursive: bool = False) -> Set[str]:
     """Validate given paths by checking if they exist.
     Also iterate over directories given so as to include .py files
     in them.
@@ -41,6 +41,8 @@ def validate_paths(paths: List[str]) -> Set[str]:
 
     Args:
         paths (List[str]): List of paths to validate.
+
+        recursive (Bool): Check directories recursively. Defaults to `False`.
 
     Returns:
         Set[str]: Set of valid paths. This includes the files
@@ -55,7 +57,10 @@ def validate_paths(paths: List[str]) -> Set[str]:
             if file_path.is_file() and file_path.suffix == ".py":
                 valid_paths.append(str(file_path.absolute()))
             elif file_path.is_dir():
-                files = file_path.glob("*.py")  # Get .py files in directory
+                if recursive:  # Get all .py files in all child directories.
+                    files = file_path.glob("**/*.py")
+                else:  # Get .py files in this directory only.
+                    files = file_path.glob("*.py")
 
                 # Add absolute paths of the files to avoid later inconveniences
                 # when reading from the file.
@@ -66,7 +71,9 @@ def validate_paths(paths: List[str]) -> Set[str]:
     return set(valid_paths)  # Remove duplicates
 
 
-def get_ast(paths: List[str]) -> Optional[List[Tuple]]:
+def get_ast(
+    paths: List[str], recursive: bool = False
+) -> Optional[List[Tuple]]:
     """Get the Abstract Syntax Trees(AST) of the modules pointed to
     by paths.
 
@@ -76,6 +83,8 @@ def get_ast(paths: List[str]) -> Optional[List[Tuple]]:
             Absolute paths can also be used.
             This list can include directories. If .py files are
             found in the directory they are checked instead.
+
+        recursive (Bool): Check directories recursively. Defaults to `False`.
 
     Raises:
         TypeError: If paths is not a list this error is raised.
@@ -92,7 +101,7 @@ def get_ast(paths: List[str]) -> Optional[List[Tuple]]:
     if len(paths) == 0:
         return None
 
-    valid_paths = validate_paths(paths)
+    valid_paths = validate_paths(paths, recursive)
 
     if len(valid_paths) == 0:
         return None
