@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """pycheckdoc executable"""
 
+# from pycheckdoc.check_doc import main
 from pycheckdoc_v2.main import main
 
 main()
