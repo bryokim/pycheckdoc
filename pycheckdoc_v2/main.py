@@ -28,11 +28,30 @@ parser.add_argument(
 parser.add_argument(
     "paths", nargs="*", help="Paths to files/directories to check"
 )
-args = parser.parse_args()
+cli_args = parser.parse_args()
 
 
-def main():
-    """Entry point"""
+def main(args: argparse.Namespace = cli_args):
+    """Pycheckdoc entry point.
+
+    Args:
+        `args` (Namespace, optional): Arguments passed to the programme in a
+            `argparse.Namespace` . Defaults to `cli_args`. `cli_args` are
+            arguments provided in the command line.
+
+    Usage
+    ---
+
+    The sample below checks the current directory recursively.
+
+    ```Python
+    from pycheckdoc_v2.main import main, parser
+
+    args = parser.parse_args([".", "-r"])   # Provide arguments
+    main(args)  # Pass the arguments to main
+
+    ```
+    """
 
     if len(args.paths) == 0:
         print_usage()
