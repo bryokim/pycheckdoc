@@ -5,55 +5,13 @@ documentation.
 
 ## Installation
 
-Clone [this](<https://github.com/bryokim/pycheckdoc>) repository.
+Check out these two versions and install your choice:
 
-```Bash
-cd pycheckdoc
-```
+- [pycheckdoc](pycheckdoc/README.md) - Imports modules to check them.
+- [pycheckdoc_v2](pycheckdoc_v2/README.md) - Reads modules and generates ASTs to check.
 
-Install required packages in requirements.txt.
+## Contribution
 
-```Bash
-pip install -r requirements.txt
-```
+Any contributions to the project are welcome.
 
-Edit the `setup.py` file as you see fit. You can use it as is
-and will build the package accordingly.
-
-Build the package.
-
-```Bash
-python setup.py sdist bdist_wheel
-```
-
-Install the `pycheckdoc` package that has been built.
-
-```Bash
-pip install .
-```
-
-An executable, `pycheckdoc`, is installed in the path so that the
-module can be called from the terminal.
-
-## Usage
-
-### From the terminal
-
-`pycheckdoc` can be called from the terminal as shown below.
-
-```Bash
-pycheckdoc [filename]
-```
-
-### Import to a file
-
-You can import `pycheckdoc` into a file and use its different
-methods to check documentation.
-
-```Python
-import pycheckdoc
-
-import math
-
-pycheckdoc.check_module_doc(math) # Print error if module isn't documented, otherwise nothing happens
-```
+:art:
