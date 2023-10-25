@@ -11,6 +11,8 @@ documentation is also checked.
 Clone [this](<https://github.com/bryokim/pycheckdoc>) repository.
 
 ```Bash
+git clone https://github.com/bryokim/pycheckdoc.git
+
 cd pycheckdoc
 ```
 
@@ -20,7 +22,8 @@ Install required packages in requirements.txt.
 pip install -r requirements.txt
 ```
 
-Change [pycheckdoc](../bin/pycheckdoc) binary to load this module instead of v2. It's supposed to look as below.
+Change [bin/pycheckdoc](../bin/pycheckdoc) to load this module instead of pycheckdoc_v2.
+It's supposed to look as below.
 
 ```Python
 #!/usr/bin/env python3
@@ -79,31 +82,6 @@ pycheckdoc.check_module_doc(math) # Print error if module isn't documented, othe
 
 ## More Docs
 
-### Getting members
-
-Example of how members are gotten. This is a snippet from [check_class.py](check_class.py).
-
-```Python
-# check_class.py
-
-def get_classes(module: ModuleType) -> List[Any]:
-    """Get classes from the given module.
-
-    Args:
-        module (ModuleType): Module to get its classes.
-
-    Returns:
-        list[Any]: A list of classes from the module.
-    """
-    classes = [
-        _class
-        for _, _class in inspect.getmembers(module, inspect.isclass)
-        if _class.__module__ == module.__name__ # Ensure it's not an imported class.
-    ]
-
-    return classes
-```
-
 ### Importing modules
 
 Since modules being checked are imported, they need to contain `if __name__ == "__main__":`
@@ -161,4 +139,29 @@ except TimeoutError:
         + "\033[1;37m`if __name__ == '__main__':`\033[0m guard set.",
         file=stderr,
     )
+```
+
+### Getting members
+
+Example of how members are gotten. This is a snippet from [check_class.py](check_class.py).
+
+```Python
+# check_class.py
+
+def get_classes(module: ModuleType) -> List[Any]:
+    """Get classes from the given module.
+
+    Args:
+        module (ModuleType): Module to get its classes.
+
+    Returns:
+        list[Any]: A list of classes from the module.
+    """
+    classes = [
+        _class
+        for _, _class in inspect.getmembers(module, inspect.isclass)
+        if _class.__module__ == module.__name__ # Ensure it's not an imported class.
+    ]
+
+    return classes
 ```
