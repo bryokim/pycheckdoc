@@ -1,6 +1,8 @@
+"""pycheckdoc setup"""
+
 from setuptools import setup, find_packages
 
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 DESCRIPTION = (
     "Check documentation is present on module, class, function and methods."
 )
