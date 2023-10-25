@@ -73,7 +73,7 @@ def validate_paths(paths: List[str], recursive: bool = False) -> Set[str]:
 
 def get_ast(
     paths: List[str], recursive: bool = False
-) -> Optional[List[Tuple]]:
+) -> Optional[List[Tuple[str, ast.Module]]]:
     """Get the Abstract Syntax Trees(AST) of the modules pointed to
     by paths.
 
@@ -90,9 +90,9 @@ def get_ast(
         TypeError: If paths is not a list this error is raised.
 
     Returns:
-        List[Tuple] | None: List of tuples with format (path, ast.Module)
-            if paths are provided and at least one is exists,
-            else None is returned.
+        List[Tuple[str, Module]] | None: List of tuples with format
+            (path, ast.Module) if paths are provided and at least one is
+            exists, else None is returned.
     """
 
     if type(paths) is not list:
